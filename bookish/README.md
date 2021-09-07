@@ -1,4 +1,4 @@
-# bokish
+# bookish
 
 A new Flutter project.
 

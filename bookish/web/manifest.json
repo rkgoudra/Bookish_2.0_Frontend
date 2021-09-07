@@ -1,6 +1,6 @@
 {
-    "name": "bokish",
-    "short_name": "bokish",
+    "name": "bookish",
+    "short_name": "bookish",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
