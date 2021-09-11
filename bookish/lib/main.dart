@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xFF3EBACE),
       ),
       home: HomeScreen(),
-      
     );
   }
 }

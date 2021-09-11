@@ -1,3 +1,4 @@
+import 'package:bookish/widgets/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -84,16 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ))
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: [
-            IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-            Spacer(),
-            IconButton(icon: Icon(Icons.search), onPressed: () {}),
-            IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
-          ],
-        ),
-      ),
+      bottomNavigationBar: BootomNavbar(),
     );
   }
 }
