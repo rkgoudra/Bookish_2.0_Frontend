@@ -1,4 +1,4 @@
-import 'package:bookish/home_screen.dart';
+import 'package:bookish/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xFFF3F5F7),
         primaryColor: Color(0xFF3EBACE),
       ),
-      home: HomeScreen(),
+      home: HomePage(),
     );
   }
 }
