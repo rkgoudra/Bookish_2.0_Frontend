@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class HomePage extends StatefulWidget {
+  static String tag = 'home-page';
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -75,8 +76,8 @@ class BuildBannerSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320,
-      height: 180,
+      width: MediaQuery.of(context).size.width,
+      height: 300,
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [Colors.red, Colors.pink]),
         borderRadius: BorderRadius.circular(12),
