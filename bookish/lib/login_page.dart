@@ -1,4 +1,3 @@
-import 'package:bookish/user_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,64 +11,129 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final welcomeText = Hero(
+    final imageboxed = Hero(
         tag: 'hero',
-        child: Center(
-          child: Text('Welcome to Bookish',
-              style: TextStyle(color: Colors.black54, fontSize: 25)),
-        ));
-    final logo = Hero(
-      tag: 'tag',
-      child: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        radius: 75.0,
-        child: Image.asset('assets/images/tbooks.png'),
-      ),
-    );
-    final email = TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      autofocus: false,
-      initialValue: 'abc@gmail.com',
-      decoration: InputDecoration(
-        hintText: 'Email',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(32.0),
-        ),
-      ),
-    );
-    final password = TextFormField(
-      autofocus: false,
-      initialValue: 'Some Password',
-      obscureText: true,
-      decoration: InputDecoration(
-        hintText: 'Password',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(32.0),
-        ),
-      ),
-    );
-    final loginButton = Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Material(
-        borderRadius: BorderRadius.circular(30.0),
-        shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 5.0,
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: () {
-            Navigator.of(context).pushNamed(UserPage.tag);
-          },
-          color: Colors.lightBlueAccent,
-          child: Text(
-            'Sign-In',
-            style: TextStyle(color: Colors.white),
+        child: Stack(children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(0.0, 2.0),
+                      blurRadius: 6.0)
+                ]),
+            child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)),
+                child: Image(
+                    image: AssetImage('assets/images/book.jpg'),
+                    color: Color.fromRGBO(75, 75, 75, 0.7),
+                    colorBlendMode: BlendMode.modulate,
+                    fit: BoxFit.cover)),
           ),
-        ),
+          Container(
+            height: MediaQuery.of(context).size.height - 400,
+            padding: EdgeInsets.only(bottom: 0),
+            alignment: Alignment.center,
+            child: Center(
+              child: Text(
+                'BOOKISH',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 35.0,
+                    fontFamily: 'Rubik',
+                    fontWeight: FontWeight.w600,
+                    color: Color.fromRGBO(255, 255, 255, 1)),
+              ),
+            ),
+          )
+        ]));
+
+    final email = Stack(children: <Widget>[
+      Container(
+        padding: EdgeInsets.only(left: 30.0, right: 30.0),
+        child: TextFormField(
+            keyboardType: TextInputType.emailAddress,
+            autofocus: false,
+            initialValue: 'abc@gmail.com',
+            decoration: InputDecoration(
+              hintText: 'Email',
+              contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            )),
+      )
+    ]);
+
+    final password = Stack(children: <Widget>[
+      Container(
+          padding: EdgeInsets.only(left: 30.0, right: 30.0),
+          child: TextFormField(
+            autofocus: false,
+            initialValue: 'Some Password',
+            obscureText: true,
+            decoration: InputDecoration(
+              hintText: 'Password',
+              contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+          ))
+    ]);
+
+    final loginButton = Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          new ElevatedButton(
+            onPressed: () {},
+            child: Text("Sign In"),
+            style: ElevatedButton.styleFrom(
+                fixedSize: Size(MediaQuery.of(context).size.width - 250, 40.0),
+                primary: Colors.blueGrey),
+          ),
+          new ElevatedButton(
+            onPressed: () {},
+            child: Text("Register"),
+            style: ElevatedButton.styleFrom(
+                fixedSize:
+                    Size(MediaQuery.of(context).size.width - 250.0, 40.0),
+                primary: Colors.blueGrey),
+          )
+        ],
       ),
     );
+    //final loginButton =
+    // Padding(
+    //   // padding: EdgeInsets.symmetric(vertical: 16.0),
+    //   padding: EdgeInsets.only(left: 40.0, right: 40.0),
+    //   child: Material(
+    //     // borderRadius: BorderRadius.circular(30.0),
+    //     shadowColor: Colors.lightBlueAccent.shade100,
+    //     elevation: 5.0,
+    //     child: MaterialButton(
+    //       // padding: EdgeInsets.only(left: 80.0, right: 30.0),
+    //       // minWidth: 0.0,
+    //       height: 50.0,
+    //       onPressed: () {
+    //         Navigator.of(context).pushNamed(UserPage.tag);
+    //       },
+    //       color: Colors.lightBlueAccent,
+    //       child: Text(
+    //         'Sign-In',
+    //         style: TextStyle(color: Colors.white),
+    //         textAlign: TextAlign.center,
+    //       ),
+    //     ),
+    //   ),
+    // );
     final forgotLabel = TextButton(
         onPressed: () {},
         child: Text(
@@ -80,13 +144,11 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       body: Center(
         child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          // shrinkWrap: true,
+          // padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
-            welcomeText,
+            imageboxed,
             SizedBox(height: 24.0),
-            logo,
-            SizedBox(height: 48.0),
             email,
             SizedBox(height: 8.0),
             password,
