@@ -1,3 +1,4 @@
+import 'package:bookish/user_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -93,7 +94,9 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           new ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(UserPage.tag);
+            },
             child: Text("Sign In"),
             style: ElevatedButton.styleFrom(
                 fixedSize: Size(MediaQuery.of(context).size.width - 250, 40.0),
