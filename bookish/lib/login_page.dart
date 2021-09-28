@@ -1,4 +1,5 @@
-import 'package:bookish/user_page.dart' show UserPage;
+import 'package:bookish/services/loginService.dart';
+// import 'package:bookish/user_page.dart' show UserPage;
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,6 +15,9 @@ class _LoginPageState extends State<LoginPage> {
   final RegExp emailRegex = new RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
   final _emailID = GlobalKey<FormFieldState<String>>();
   final _password = GlobalKey<FormFieldState<String>>();
+  final TextEditingController _passwordController = new TextEditingController();
+  final TextEditingController _emailController = new TextEditingController();
+  var _userData;
   @override
   Widget build(BuildContext context) {
     final imageboxed = Hero(
@@ -66,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
           key: _emailID,
           keyboardType: TextInputType.emailAddress,
           autofocus: false,
-          initialValue: '',
+          controller: _emailController,
           decoration: InputDecoration(
             labelText: 'Email-ID',
             hintText: 'Enter your Email ID',
@@ -95,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
             key: _password,
             autofocus: false,
             obscureText: true,
+            controller: _passwordController,
             decoration: InputDecoration(
               labelText: 'Password',
               hintText: 'Enter your Password',
@@ -123,11 +128,16 @@ class _LoginPageState extends State<LoginPage> {
         children: <Widget>[
           new ElevatedButton(
             onPressed: () {
-              if (_emailID.currentState!.validate() &&
-                  _password.currentState!.validate()) {
+              if (_emailController.text.isNotEmpty &&
+                  _passwordController.text.isNotEmpty) {
                 //check if form data are valid,
                 // your process task ahed if all data are valid
-                Navigator.of(context).pushNamed(UserPage.tag);
+                setState(() {
+                  _userData = getUser(
+                      _emailController.text, _passwordController.text, context);
+
+                  // Navigator.of(context).pushNamed(UserPage.tag);
+                });
               }
             },
             child: Text("Sign In"),

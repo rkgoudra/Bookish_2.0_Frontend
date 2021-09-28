@@ -1,13 +1,14 @@
 class LoginModel {
-  final int firstName;
-  final String password;
+  final String userLogin;
+  // final String password;
 
-  LoginModel({required this.firstName, required this.password});
+  LoginModel({required this.userLogin});
 
   factory LoginModel.fromJson(Map<String, dynamic> json) {
+    print(json);
     return LoginModel(
-      firstName: json['firstName'],
-      password: json['password'],
+      userLogin: json['userLogin'],
+      // password: json['password'],
     );
   }
 }
