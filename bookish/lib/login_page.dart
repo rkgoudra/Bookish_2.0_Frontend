@@ -119,6 +119,21 @@ class _LoginPageState extends State<LoginPage> {
           'forgot password?',
           style: TextStyle(color: Colors.black54),
         ));
+
+    final madeInLove = new Expanded(
+      child: new Align(
+        alignment: Alignment.bottomCenter,
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          new Text("Made with "),
+          new Icon(
+            Icons.favorite,
+            color: Colors.pink,
+          ),
+          new Text(" in India")
+        ]),
+      ),
+    );
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -135,21 +150,7 @@ class _LoginPageState extends State<LoginPage> {
             loginButton,
             forgotLabel,
             SizedBox(height: MediaQuery.of(context).size.height - 750),
-            new Expanded(
-              child: new Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new Text("Made with "),
-                      new Icon(
-                        Icons.favorite,
-                        color: Colors.pink,
-                      ),
-                      new Text(" in India")
-                    ]),
-              ),
-            )
+            madeInLove
           ],
         ),
       ),
