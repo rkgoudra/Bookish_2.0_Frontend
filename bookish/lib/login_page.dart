@@ -182,7 +182,6 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 24.0),
             loginButton,
             forgotLabel,
-            SizedBox(height: MediaQuery.of(context).size.height - 700),
             madeInLove
           ],
         ),
