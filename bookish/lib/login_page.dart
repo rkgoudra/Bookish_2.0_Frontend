@@ -134,6 +134,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 24.0),
             loginButton,
             forgotLabel,
+            SizedBox(height: MediaQuery.of(context).size.height - 750),
             new Expanded(
               child: new Align(
                 alignment: Alignment.bottomCenter,
