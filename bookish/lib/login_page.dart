@@ -17,7 +17,6 @@ class _LoginPageState extends State<LoginPage> {
   final _password = GlobalKey<FormFieldState<String>>();
   final TextEditingController _passwordController = new TextEditingController();
   final TextEditingController _emailController = new TextEditingController();
-  var _userData;
   @override
   Widget build(BuildContext context) {
     final imageboxed = Hero(
@@ -133,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                 //check if form data are valid,
                 // your process task ahed if all data are valid
                 setState(() {
-                  _userData = getUser(
+                  getUser(
                       _emailController.text, _passwordController.text, context);
 
                   // Navigator.of(context).pushNamed(UserPage.tag);
