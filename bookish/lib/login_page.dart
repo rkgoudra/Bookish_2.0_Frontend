@@ -1,4 +1,4 @@
-import 'package:bookish/user_page.dart';
+import 'package:bookish/user_page.dart' show UserPage;
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +10,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var formKey;
+  final RegExp emailRegex = new RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  final _emailID = GlobalKey<FormFieldState<String>>();
+  final _password = GlobalKey<FormFieldState<String>>();
   @override
   Widget build(BuildContext context) {
     final imageboxed = Hero(
@@ -38,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                     fit: BoxFit.cover)),
           ),
           Container(
-            height: MediaQuery.of(context).size.height - 400,
+            height: MediaQuery.of(context).size.height - 450,
             padding: EdgeInsets.only(bottom: 0),
             alignment: Alignment.center,
             child: Center(
@@ -59,16 +63,28 @@ class _LoginPageState extends State<LoginPage> {
       Container(
         padding: EdgeInsets.only(left: 30.0, right: 30.0),
         child: TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            autofocus: false,
-            initialValue: 'abc@gmail.com',
-            decoration: InputDecoration(
-              hintText: 'Email',
-              contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            )),
+          key: _emailID,
+          keyboardType: TextInputType.emailAddress,
+          autofocus: false,
+          initialValue: '',
+          decoration: InputDecoration(
+            labelText: 'Email-ID',
+            hintText: 'Enter your Email ID',
+            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Email ID Can't be Blank.";
+            } else if (!emailRegex.hasMatch(value)) {
+              return "Enter Correct Email Address";
+            } else {
+              return null;
+            }
+          },
+        ),
       )
     ]);
 
@@ -76,16 +92,28 @@ class _LoginPageState extends State<LoginPage> {
       Container(
           padding: EdgeInsets.only(left: 30.0, right: 30.0),
           child: TextFormField(
+            key: _password,
             autofocus: false,
-            initialValue: 'Some Password',
             obscureText: true,
             decoration: InputDecoration(
-              hintText: 'Password',
+              labelText: 'Password',
+              hintText: 'Enter your Password',
               contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "Password Can't be Empty";
+              } else if (value.length < 6) {
+                return "Password length is Short (Min:6, Max=15 Chars)";
+              } else if (value.length > 15) {
+                return "Password must be less than 15 characters";
+              } else {
+                return null;
+              }
+            },
           ))
     ]);
 
@@ -95,7 +123,12 @@ class _LoginPageState extends State<LoginPage> {
         children: <Widget>[
           new ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(UserPage.tag);
+              if (_emailID.currentState!.validate() &&
+                  _password.currentState!.validate()) {
+                //check if form data are valid,
+                // your process task ahed if all data are valid
+                Navigator.of(context).pushNamed(UserPage.tag);
+              }
             },
             child: Text("Sign In"),
             style: ElevatedButton.styleFrom(
@@ -149,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 24.0),
             loginButton,
             forgotLabel,
-            SizedBox(height: MediaQuery.of(context).size.height - 750),
+            SizedBox(height: MediaQuery.of(context).size.height - 700),
             madeInLove
           ],
         ),
