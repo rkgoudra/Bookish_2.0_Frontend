@@ -113,30 +113,6 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
-    //final loginButton =
-    // Padding(
-    //   // padding: EdgeInsets.symmetric(vertical: 16.0),
-    //   padding: EdgeInsets.only(left: 40.0, right: 40.0),
-    //   child: Material(
-    //     // borderRadius: BorderRadius.circular(30.0),
-    //     shadowColor: Colors.lightBlueAccent.shade100,
-    //     elevation: 5.0,
-    //     child: MaterialButton(
-    //       // padding: EdgeInsets.only(left: 80.0, right: 30.0),
-    //       // minWidth: 0.0,
-    //       height: 50.0,
-    //       onPressed: () {
-    //         Navigator.of(context).pushNamed(UserPage.tag);
-    //       },
-    //       color: Colors.lightBlueAccent,
-    //       child: Text(
-    //         'Sign-In',
-    //         style: TextStyle(color: Colors.white),
-    //         textAlign: TextAlign.center,
-    //       ),
-    //     ),
-    //   ),
-    // );
     final forgotLabel = TextButton(
         onPressed: () {},
         child: Text(
@@ -157,7 +133,22 @@ class _LoginPageState extends State<LoginPage> {
             password,
             SizedBox(height: 24.0),
             loginButton,
-            forgotLabel
+            forgotLabel,
+            new Expanded(
+              child: new Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      new Text("Made with "),
+                      new Icon(
+                        Icons.favorite,
+                        color: Colors.pink,
+                      ),
+                      new Text(" in India")
+                    ]),
+              ),
+            )
           ],
         ),
       ),
