@@ -10,7 +10,7 @@ import '../user_page.dart';
 Future<Object> getUser(
     String firstName, String password, BuildContext context) async {
   final response = await http.post(
-    Uri.parse('http://192.168.1.11:8080/bookish/login/loginUser'),
+    Uri.parse('http://192.168.0.96:8080/bookish/login/loginUser'),
     headers: <String, String>{
       'Content-Type': 'application/json',
     },

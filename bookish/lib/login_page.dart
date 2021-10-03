@@ -1,3 +1,4 @@
+import 'package:bookish/register.dart';
 import 'package:bookish/services/loginService.dart';
 // import 'package:bookish/user_page.dart' show UserPage;
 import 'package:flutter/material.dart';
@@ -120,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
             },
           ))
     ]);
-
+//   Navigator.push(context,MaterialPageRoute(builder: (context) => RegisterPage()),);
     final loginButton = Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -145,7 +146,13 @@ class _LoginPageState extends State<LoginPage> {
                 primary: Colors.blueGrey),
           ),
           new ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              printMSG('Register');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RegisterPage()),
+              );
+            },
             child: Text("Register"),
             style: ElevatedButton.styleFrom(
                 fixedSize:
@@ -196,5 +203,9 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void printMSG(msg) {
+    print(msg + " Button is Clicked..");
   }
 }
