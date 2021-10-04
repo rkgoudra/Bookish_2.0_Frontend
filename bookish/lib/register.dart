@@ -1,3 +1,4 @@
+import 'package:bookish/services/registerService.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -21,6 +22,14 @@ class _RegisterPageState extends State<RegisterPage> {
   final _focusPhoneNumber = FocusNode();
 
   bool _isProcessing = false;
+
+  void _submit() {
+    final isValid = _registerFormKey.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+    _registerFormKey.currentState!.save();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +67,18 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter First Name';
+                          } else if (value.length < 3) {
+                            return 'Invalid First Name';
+                          } else if (!RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                            //allow upper and lower case alphabets and space
+                            return "Enter Correct First Name";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       SizedBox(height: 16.0),
                       TextFormField(
@@ -72,6 +93,18 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter Last Name';
+                          } else if (value.length < 3) {
+                            return 'Invalid Last Name';
+                          } else if (!RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                            //allow upper and lower case alphabets and space
+                            return "Enter Correct Last Name";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       SizedBox(height: 16.0),
                       TextFormField(
@@ -86,6 +119,17 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter Email';
+                          } else if (!RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(value)) {
+                            return "Enter Correct Email";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       SizedBox(height: 16.0),
                       TextFormField(
@@ -101,6 +145,16 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                         ),
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                                  .hasMatch(value)) {
+                            //  r'^[0-9]{10}$' pattern plain match number with length 10
+                            return "Enter Correct Password \n{Min: 1 Upper, lower, Numeric, Special Character of 8 length}\nAllowed Special chars {\! @ # \$ & * ~ } ";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       SizedBox(height: 16.0),
                       TextFormField(
@@ -115,6 +169,15 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                         ),
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[0]?[789]\d{9}$').hasMatch(value)) {
+                            //  r'^[0-9]{10}$' pattern plain match number with length 10
+                            return "Enter Correct Phone Number\nPlease Don't include \+ Sign and Country Code.\n0 is acceptable.";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       SizedBox(height: 32.0),
                       _isProcessing
@@ -124,7 +187,24 @@ class _RegisterPageState extends State<RegisterPage> {
                                 Expanded(
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      print("Hello world");
+                                      try {
+                                        _submit();
+                                        setState(() {
+                                          createUser(
+                                            _firstNameTextController.text,
+                                            _lastNameTextController.text,
+                                            _emailTextController.text,
+                                            _passwordTextController.text,
+                                            _phoneNumberTextController.text,
+                                          );
+
+                                          // Navigator.of(context).pushNamed(UserPage.tag);
+                                        });
+                                      } catch (e) {
+                                        print(e);
+                                      }
+
+                                      // print("Hello world");
                                     },
                                     child: Text(
                                       'Sign up',
