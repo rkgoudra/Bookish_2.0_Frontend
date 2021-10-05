@@ -139,7 +139,7 @@ class ProfileApp extends StatelessWidget {
             Container(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    vertical: 30.0, horizontal: 16.0),
+                    vertical: 20.0, horizontal: 1.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,7 +149,7 @@ class ProfileApp extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.redAccent,
                           fontStyle: FontStyle.normal,
-                          fontSize: 28.0),
+                          fontSize: 24.0),
                     ),
                     SizedBox(
                       height: 10.0,
@@ -170,7 +170,7 @@ class ProfileApp extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20.0,
+              height: 10.0,
             ),
             Container(
                 width: 300.00,
