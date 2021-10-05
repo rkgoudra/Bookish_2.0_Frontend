@@ -1,3 +1,4 @@
+import 'package:bookish/profile.dart';
 import 'package:bookish/register.dart';
 import 'package:bookish/services/loginService.dart';
 // import 'package:bookish/user_page.dart' show UserPage;
@@ -18,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   final _password = GlobalKey<FormFieldState<String>>();
   final TextEditingController _passwordController = new TextEditingController();
   final TextEditingController _emailController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final imageboxed = Hero(
@@ -132,12 +134,25 @@ class _LoginPageState extends State<LoginPage> {
                   _passwordController.text.isNotEmpty) {
                 //check if form data are valid,
                 // your process task ahed if all data are valid
+
                 setState(() {
                   getUser(
                       _emailController.text, _passwordController.text, context);
 
                   // Navigator.of(context).pushNamed(UserPage.tag);
                 });
+              } else {
+                final snackBar = SnackBar(
+                  content: const Text('Please Enter User Name and Password'),
+                  backgroundColor: Colors.blueGrey,
+                  elevation: 10,
+                  behavior: SnackBarBehavior.floating,
+                  margin: EdgeInsets.all(10),
+                );
+
+                // Find the ScaffoldMessenger in the widget tree
+                // and use it to show a SnackBar.
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               }
             },
             child: Text("Sign In"),
@@ -163,7 +178,12 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
     final forgotLabel = TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ProfileApp()),
+          );
+        },
         child: Text(
           'forgot password?',
           style: TextStyle(color: Colors.black54),

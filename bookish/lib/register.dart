@@ -44,6 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Register'),
+          backgroundColor: Colors.blueGrey,
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -221,7 +222,25 @@ class _RegisterPageState extends State<RegisterPage> {
                                 Expanded(
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      print("Hello world");
+                                      //  print("Hello world");
+                                      _firstNameTextController.clear();
+                                      _lastNameTextController.clear();
+                                      _emailTextController.clear();
+                                      _passwordTextController.clear();
+                                      _phoneNumberTextController.clear();
+                                      final snackBar = SnackBar(
+                                        content:
+                                            const Text('All Data Cleared.'),
+                                        backgroundColor: Colors.blueGrey,
+                                        elevation: 10,
+                                        behavior: SnackBarBehavior.floating,
+                                        margin: EdgeInsets.all(10),
+                                      );
+
+                                      // Find the ScaffoldMessenger in the widget tree
+                                      // and use it to show a SnackBar.
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
                                     },
                                     child: Text(
                                       'Clear',

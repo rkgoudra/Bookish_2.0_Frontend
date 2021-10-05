@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Bookish',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        accentColor: Color(0xFFF3F5F7),
+        secondaryHeaderColor: Color(0xFFF3F5F7),
         primaryColor: Color(0xFF3EBACE),
       ),
       home: LoginPage(),

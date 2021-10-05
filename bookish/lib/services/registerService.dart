@@ -5,7 +5,7 @@ import 'package:bookish/models/registerModel.dart';
 Future<RegisterModel> createUser(String firstName, String lastName,
     String email, String password, String phoneNumber) async {
   final response = await http
-      .get(Uri.parse('http://localhost:8080/bookish/login/createUser'));
+      .put(Uri.parse('http://localhost:8080/bookish/login/createUser'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
